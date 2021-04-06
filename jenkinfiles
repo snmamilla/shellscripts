@@ -4,6 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'git --version'
+                echo " Welcome to webhook"
             }
         }
     
