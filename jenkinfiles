@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('submit stack') {
             steps {
-                sh " sh /root/test "           
+                sh " uname -a "           
             }
         }
     }    
