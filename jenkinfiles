@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('submit stack') {
             steps {
-                sh " aws s3 ls "           
+                sh " sh /root/test "           
             }
         }
     }    
