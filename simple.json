@@ -1,16 +1,54 @@
 {
-    "AWSTemplateFormatVersion": "2010-09-09",
-    "Resources": {
-        "S3Bucket": {
-            "Type": "AWS::S3::Bucket"
-        }
+  "Description": "Create an EC2 instance by AWS CloudFormation",
+  "Resources": {
+    "SecurityGroupDemoSvrTraffic": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupName": "sgdemosvr",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "0.0.0.0/0",
+            "Description": "For traffic from Internet"
+          }
+        ],
+        "GroupDescription": "Security Group for demo server",
+        "VpcId": "vpc-a9fd45c2"
+      }
     },
-    "Outputs": {
-        "BucketName": {
-            "Value": {
-                "Ref": "S3Bucket"
-            },
-            "Description": "Name of the sample Amazon S3 bucket."
-        }
+    "EC2InstanceDemoSvr": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "AvailabilityZone": "us-east-2b",
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "DeleteOnTermination": "true",
+              "VolumeSize": "8",
+              "VolumeType": "gp2"
+            }
+          }
+        ],
+        "ImageId": "ami-077e31c4939f6a2f3",
+        "InstanceType": "t2.micro",
+        "KeyName": "Satya",
+        "NetworkInterfaces": [
+          {
+            "Description": "Primary network interface",
+            "DeviceIndex": "0",
+            "SubnetId": "subnet-f608168c",
+            "PrivateIpAddress": "172.31.16.4",
+            "GroupSet": [
+              {
+                "Ref": "SecurityGroupDemoSvrTraffic"
+              }
+            ]
+          }
+        ]
+      }
     }
+  }
 }
