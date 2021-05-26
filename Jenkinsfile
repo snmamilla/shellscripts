@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('submit stack') {
             steps {
-                sh " uname -a "           
+                sh " aws s3 ls "           
             }
         }
     }    
