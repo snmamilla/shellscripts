@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('submit stack') {
             steps {
-                sh "aws cloudformation create-stack --stack-name ec2demo  --template-body file://ec2demo.json --region 'us-east-2'"          
+ ##               sh "aws cloudformation create-stack --stack-name ec2demo  --template-body file://ec2demo.json --region 'us-east-2'"          
+                sh " sh /root/ec2demo.sh "
             }
         }
     }    
