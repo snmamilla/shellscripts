@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('submit stack') {
             steps {
-                sh " chmod +x /root/ec2demo.sh "
+                sh " sh /ec2demo/ec2demo.sh "
             }
         }
     }    
