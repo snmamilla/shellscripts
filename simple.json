@@ -21,7 +21,7 @@
     "EC2InstanceDemoSvr": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
-        "AvailabilityZone": "us-east-2b",
+        "AvailabilityZone": "us-east-1",
         "BlockDeviceMappings": [
           {
             "DeviceName": "/dev/sda1",
